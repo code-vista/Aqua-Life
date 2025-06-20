@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Update Profile - Aqua Clean</title>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #d0f0ff, #e6f7ff);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .profile {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile span {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .dropdown {
+      position: absolute;
+      right: 0;
+      top: 60px;
+      background: white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      display: none;
+      z-index: 10;
+    }
+
+    .dropdown.show {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004080;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px;
+      width: 100%;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #003060;
+    }
+
+    .success {
+      margin-top: 15px;
+      color: green;
+      text-align: center;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Aqua Clean</strong></div>
+    <div class="profile" onclick="toggleDropdown()">
+      <i class="fas fa-user-circle"></i>
+      <span id="userName">User</span>
+      <div class="dropdown" id="dropdownMenu">
+        <a href="profile.html">Update Profile</a>
+        <a href="track.html">Track Complaint</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="form-container">
+    <h2>Update Profile</h2>
+    <label>First Name</label>
+    <input type="text" id="firstName" />
+
+    <label>Last Name</label>
+    <input type="text" id="lastName" />
+
+    <label>Address</label>
+    <input type="text" id="address" />
+
+    <label>State</label>
+    <select id="state">
+      <option value="">Select State</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Telangana">Telangana</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Karnataka">Karnataka</option>
+      <option value="Kerala">Kerala</option>
+    </select>
+
+    <label>District</label>
+    <input type="text" id="district" />
+
+    <button onclick="saveProfile()">Save Profile</button>
+    <div class="success" id="message"></div>
+  </div>
+
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+  
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBPpEfJcjU1fj3RF82b9hOB77JrwlVr-78",
+      authDomain: "aqua-clean-5f0d8.firebaseapp.com",
+      projectId: "aqua-clean-5f0d8",
+      storageBucket: "aqua-clean-5f0d8.appspot.com",
+      messagingSenderId: "873827226073",
+      appId: "1:873827226073:web:813892f57f1414ce5f89c8"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const user = firebase.auth().currentUser;
+    const dropdown = document.getElementById("dropdownMenu");
+    const userName = document.getElementById("userName");
+    const message = document.getElementById("message");
+
+    function toggleDropdown() {
+      dropdown.classList.toggle("show");
+    }
+
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest(".profile")) {
+        dropdown.classList.remove("show");
+      }
+    });
+
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        localStorage.removeItem("aquaUser");
+        window.location.href = "login.html";
+      });
+    }
+
+    function saveProfile() {
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const state = document.getElementById("state").value;
+      const district = document.getElementById("district").value.trim();
+
+      const fullName = firstName + " " + lastName;
+
+      // Save to localStorage
+      localStorage.setItem("aquaUser", JSON.stringify({
+        name: fullName,
+        firstName,
+        lastName,
+        address,
+        state,
+        district
+      }));
+
+      // Also update Firebase displayName if user is logged in
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          user.updateProfile({ displayName: fullName });
+          userName.innerText = fullName;
+        }
+      });
+
+      message.innerText = "Profile updated successfully!";
+    }
+
+    window.onload = function () {
+      const savedUser = JSON.parse(localStorage.getItem("aquaUser"));
+      if (savedUser) {
+        userName.innerText = savedUser.name || "User";
+        document.getElementById("firstName").value = savedUser.firstName || "";
+        document.getElementById("lastName").value = savedUser.lastName || "";
+        document.getElementById("address").value = savedUser.address || "";
+        document.getElementById("state").value = savedUser.state || "";
+        document.getElementById("district").value = savedUser.district || "";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aqua Clean - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 28px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    .language-select select {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-left: 20px;
+    }
+
+    .profile {
+      position: relative;
+      margin-left: 20px;
+    }
+
+    .profile-toggle {
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .profile-toggle i {
+      margin-right: 6px;
+      font-size: 20px;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: white;
+      border-radius: 6px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 100;
+    }
+
+    .dropdown.show {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: linear-gradient(to right, #cce0ff, #e6f0ff);
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      color: #004080;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #555;
+      margin: 20px 0;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .buttons button {
+      padding: 14px 28px;
+      margin: 0 10px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #003366;
+    }
+
+    footer {
+      background-color: #001f33;
+      color: #ccc;
+      padding: 40px 20px 20px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      flex: 1 1 300px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+      color: #00ccff;
+      margin-bottom: 15px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin: 6px 0;
+    }
+
+    .footer-section ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aqua Clean</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+    <div class="language-select">
+      <select id="languageSwitcher">
+        <option value="en">English</option>
+        <option value="te">Telugu</option>
+        <option value="hi">Hindi</option>
+      </select>
+    </div>
+    <div class="profile">
+      <div class="profile-toggle" onclick="toggleDropdown()">
+        <i class="fas fa-user-circle"></i>
+        <span id="profileName">User</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="dropdown" id="dropdown">
+        <a href="profile.html">Update Profile</a>
+        <a href="track.html">Track Complaint</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2 id="heroTitle">Welcome to Aqua Clean</h2>
+    <p id="heroText">Raise your voice for clean water. Report issues in your community.</p>
+    <div class="buttons">
+      <button onclick="window.location.href='register.html'" id="registerBtn">Register Complaint</button>
+      <button onclick="window.location.href='track.html'" id="trackBtn">Track Complaint</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Aqua Clean</h4>
+        <p id="footerDesc">Empowering clean water and sanitation through digital solutions.</p>
+      </div>
+      <div class="footer-section">
+        <h4 id="footerLinksTitle">Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="register.html">Register Complaint</a></li>
+          <li><a href="track.html">Track Complaint</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4 id="footerContactTitle">Contact</h4>
+        <p>Email: support@aquaclean.org</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Aqua Clean | All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleDropdown() {
+      document.getElementById("dropdown").classList.toggle("show");
+    }
+
+    function logout() {
+      localStorage.removeItem('aquaUser');
+      window.location.href = "login.html";
+    }
+
+    document.addEventListener('click', function (e) {
+      const profile = document.querySelector('.profile');
+      if (!profile.contains(e.target)) {
+        document.getElementById("dropdown").classList.remove("show");
+      }
+    });
+
+    // Show user's name if available
+    window.onload = function () {
+      const user = JSON.parse(localStorage.getItem('aquaUser'));
+      if (user && user.name) {
+        document.getElementById("profileName").innerText = user.name;
+      }
+    };
+
+    // Translations for language support
+    const translations = {
+      en: {
+        heroTitle: "Welcome to Aqua Clean",
+        heroText: "Raise your voice for clean water. Report issues in your community.",
+        registerBtn: "Register Complaint",
+        trackBtn: "Track Complaint",
+        footerDesc: "Empowering clean water and sanitation through digital solutions.",
+        footerLinksTitle: "Quick Links",
+        footerContactTitle: "Contact"
+      },
+      te: {
+        heroTitle: "ఆక్వా క్లీన్‌కు స్వాగతం",
+        heroText: "శుద్ధమైన నీటి కోసం మీ గొంతును ఎత్తండి. మీ ప్రాంతంలోని సమస్యలను నివేదించండి.",
+        registerBtn: "ఫిర్యాదు నమోదు చేయండి",
+        trackBtn: "ఫిర్యాదు ట్రాక్ చేయండి",
+        footerDesc: "డిజిటల్ పరిష్కారాల ద్వారా శుద్ధమైన నీరు మరియు పారిశుధ్యాన్ని శక్తివంతం చేయడం.",
+        footerLinksTitle: "త్వరిత లింకులు",
+        footerContactTitle: "సంప్రదించండి"
+      },
+      hi: {
+        heroTitle: "आक्वा क्लीन में आपका स्वागत है",
+        heroText: "स्वच्छ पानी के लिए अपनी आवाज उठाएं। अपने समुदाय की समस्याओं की रिपोर्ट करें।",
+        registerBtn: "शिकायत दर्ज करें",
+        trackBtn: "शिकायत ट्रैक करें",
+        footerDesc: "डिजिटल समाधानों के माध्यम से स्वच्छ जल और स्वच्छता को सशक्त बनाना।",
+        footerLinksTitle: "त्वरित लिंक",
+        footerContactTitle: "संपर्क करें"
+      }
+    };
+
+    document.getElementById('languageSwitcher').addEventListener('change', function () {
+      const lang = this.value;
+      const t = translations[lang];
+      document.getElementById('heroTitle').innerText = t.heroTitle;
+      document.getElementById('heroText').innerText = t.heroText;
+      document.getElementById('registerBtn').innerText = t.registerBtn;
+      document.getElementById('trackBtn').innerText = t.trackBtn;
+      document.getElementById('footerDesc').innerText = t.footerDesc;
+      document.getElementById('footerLinksTitle').innerText = t.footerLinksTitle;
+      document.getElementById('footerContactTitle').innerText = t.footerContactTitle;
+    });
+  </script>
+</body>
+</html>

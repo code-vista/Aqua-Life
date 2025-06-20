@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aqua Clean - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #e6f0ff, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 30px 40px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #0077cc;
+    }
+
+    p {
+      margin-top: 0;
+      color: #333;
+    }
+
+    textarea, input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    .logout {
+      margin-top: 20px;
+      background-color: #ff4d4d;
+    }
+
+    .logout:hover {
+      background-color: #d93636;
+    }
+
+    .icon {
+      margin-right: 8px;
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><i class="fas fa-home icon"></i> Welcome to Aqua Clean</h2>
+    <p>Your voice matters. Report water-related issues below:</p>
+
+    <form id="reportForm">
+      <input type="text" id="location" placeholder="Your Location" required />
+      <textarea id="issue" rows="4" placeholder="Describe the issue..." required></textarea>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Submit Report</button>
+    </form>
+
+    <button class="logout" onclick="logoutUser()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBPpEfJcjU1fj3RF82b9hOB77JrwlVr-78",
+      authDomain: "aqua-clean-5f0d8.firebaseapp.com",
+      projectId: "aqua-clean-5f0d8",
+      storageBucket: "aqua-clean-5f0d8.appspot.com",
+      messagingSenderId: "873827226073",
+      appId: "1:873827226073:web:813892f57f1414ce5f89c8"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Check if user is logged in
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+
+    // Logout function
+    function logoutUser() {
+      firebase.auth().signOut()
+        .then(() => window.location.href = "login.html")
+        .catch(error => alert("Logout error: " + error.message));
+    }
+
+    // Handle report form
+    document.getElementById('reportForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const location = document.getElementById('location').value;
+      const issue = document.getElementById('issue').value;
+
+      alert("Report submitted:\nLocation: " + location + "\nIssue: " + issue);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

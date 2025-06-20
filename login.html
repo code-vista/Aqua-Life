@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Aqua Clean</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #dfe9f3, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 1.5rem;
+      color: #0072ff;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: #f9f9f9;
+    }
+
+    .input-group i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #0072ff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      font-weight: bold;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .google-btn {
+      background-color: #ffffff;
+      color: #000;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      margin-top: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .google-btn img {
+      width: 20px;
+    }
+
+    .switch {
+      margin-top: 15px;
+    }
+
+    .switch a {
+      color: #0072ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Email" required />
+      <i class="fas fa-envelope"></i>
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Password" required />
+      <i class="fas fa-lock"></i>
+    </div>
+
+    <button onclick="loginUser()">Login</button>
+
+    <div class="google-btn" onclick="signInWithGoogle()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
+      Sign in with Google
+    </div>
+
+    <div class="switch">
+      Don't have an account? <a href="signup.html">Sign Up</a>
+    </div>
+
+    <div class="error" id="error"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBPpEfJcjU1fj3RF82b9hOB77JrwlVr-78",
+      authDomain: "aqua-clean-5f0d8.firebaseapp.com",
+      projectId: "aqua-clean-5f0d8",
+      storageBucket: "aqua-clean-5f0d8.appspot.com",
+      messagingSenderId: "873827226073",
+      appId: "1:873827226073:web:813892f57f1414ce5f89c8"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const errorDiv = document.getElementById("error");
+
+    function loginUser() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "home.html";
+        })
+        .catch((error) => {
+          errorDiv.textContent = "Login failed: " + error.message;
+        });
+    }
+
+    function signInWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider)
+        .then(() => {
+          window.location.href = "home.html";
+        })
+        .catch((error) => {
+          errorDiv.textContent = "Google Sign-In failed: " + error.message;
+        });
+    }
+  </script>
+</body>
+</html>

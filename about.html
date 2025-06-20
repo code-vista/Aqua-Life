@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Aqua Clean</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 30px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    .about-section {
+      padding: 70px 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .about-section h2 {
+      font-size: 40px;
+      color: #004080;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .about-section p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 22px;
+      text-align: justify;
+    }
+
+    .highlight {
+      background-color: #d0f0ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .quote-box {
+      background: #e0f0ff;
+      border-left: 6px solid #0077cc;
+      padding: 22px;
+      margin: 35px 0;
+      font-style: italic;
+      color: #444;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .image-section {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 45px;
+      flex-wrap: wrap;
+    }
+
+    .image-section img {
+      width: 320px;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+
+    .image-section img:hover {
+      transform: scale(1.05);
+    }
+
+    .links-section {
+      margin-top: 60px;
+    }
+
+    .links-section h3 {
+      color: #004080;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .links-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .links-section ul li {
+      margin-bottom: 12px;
+    }
+
+    .links-section ul li a {
+      color: #0077cc;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .links-section ul li a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #001f33;
+      color: #ccc;
+      padding: 40px 20px 20px;
+      margin-top: 50px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 15px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aqua Clean</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <section class="about-section">
+    <h2>About Aqua Clean</h2>
+    <div class="highlight">
+      <p>
+        Aqua Clean is a mission-driven platform committed to ensuring clean and safe drinking water access for every citizen. Through community engagement and digital tools, our goal is to tackle water-related issues, starting with the Saradha river contamination crisis.
+      </p>
+      <p>
+        We provide a space for users to register complaints about water pollution, infrastructure breakdowns, and sanitation problems. This data is shared with local authorities, ensuring your voice reaches the right place.
+      </p>
+    </div>
+
+    <div class="quote-box">
+      <i class="fas fa-quote-left"></i> Clean water should not be a luxury, but a right available to everyone. <i class="fas fa-quote-right"></i>
+    </div>
+
+    <p>
+      With our easy-to-use web portal, citizens can file complaints, monitor progress, and read educational content. Aqua Clean aligns with <strong>UN SDG 6: Clean Water & Sanitation</strong>, and we work closely with students and civic bodies to bring real change.
+    </p>
+
+    <div class="image-section">
+      <img src="https://img.freepik.com/free-photo/fresh-pure-water-glass-generative-ai_188544-8510.jpg" alt="Glass of Clean Water">
+      <img src="https://img.freepik.com/free-photo/child-drinking-clean-water-africa_23-2148587632.jpg" alt="Child Drinking Water">
+      <img src="https://img.freepik.com/free-photo/clean-stream-mountains_181624-45194.jpg" alt="Clean Stream in Nature">
+    </div>
+
+    <div class="links-section">
+      <h3>Learn More About Clean Water</h3>
+      <ul>
+        <li><a href="https://www.un.org/sustainabledevelopment/water-and-sanitation/" target="_blank">UN: Water and Sanitation (SDG 6)</a></li>
+        <li><a href="https://www.who.int/news-room/fact-sheets/detail/drinking-water" target="_blank">WHO: Drinking Water Facts</a></li>
+        <li><a href="https://water.org/our-impact/water-crisis/" target="_blank">Water.org: The Water Crisis</a></li>
+        <li><a href="https://www.cdc.gov/healthywater/drinking/public/water_quality.html" target="_blank">CDC: Water Quality & Health</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-bottom">
+      &copy; 2025 Aqua Clean | All rights reserved
+    </div>
+  </footer>
+</body>
+</html>

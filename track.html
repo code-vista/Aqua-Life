@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Complaint - Aqua Clean</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f1f9ff;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 28px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    .language-select select {
+      padding: 6px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    form input, form button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    form button {
+      background-color: #004080;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    form button:hover {
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aqua Clean</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+    </nav>
+    <div class="language-select">
+      <select id="languageSwitcher">
+        <option value="en">English</option>
+        <option value="te">Telugu</option>
+        <option value="hi">Hindi</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2 id="trackTitle">Track Your Complaint</h2>
+    <form>
+      <input type="text" placeholder="Enter your Complaint ID" required />
+      <button type="submit" id="trackBtn">Track</button>
+    </form>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        trackTitle: "Track Your Complaint",
+        trackBtn: "Track"
+      },
+      te: {
+        trackTitle: "మీ ఫిర్యాదును ట్రాక్ చేయండి",
+        trackBtn: "ట్రాక్ చేయండి"
+      },
+      hi: {
+        trackTitle: "अपनी शिकायत ट्रैक करें",
+        trackBtn: "ट्रैक करें"
+      }
+    };
+
+    document.getElementById('languageSwitcher').addEventListener('change', function () {
+      const lang = this.value;
+      const t = translations[lang];
+      document.getElementById('trackTitle').innerText = t.trackTitle;
+      document.getElementById('trackBtn').innerText = t.trackBtn;
+    });
+  </script>
+</body>
+</html>
