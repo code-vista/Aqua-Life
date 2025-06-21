@@ -159,7 +159,7 @@
 
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
-          window.location.href = "home.html";
+          window.location.href = "index.html";
         })
         .catch((error) => {
           errorDiv.textContent = "Login failed: " + error.message;
@@ -170,7 +170,7 @@
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithPopup(provider)
         .then(() => {
-          window.location.href = "home.html";
+          window.location.href = "index.html";
         })
         .catch((error) => {
           errorDiv.textContent = "Google Sign-In failed: " + error.message;
